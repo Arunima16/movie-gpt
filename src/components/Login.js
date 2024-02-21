@@ -7,6 +7,7 @@ import {auth} from "../utils/firebase";
 import {updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_URL } from "../utils/constants";
 
 const Login = () => {
     const [isSignInForm, setIsSignInForm] = useState(true);
@@ -89,7 +90,7 @@ const Login = () => {
     return (
         <div>
             <div className="absolute">
-            <img src="https://assets.nflxext.com/ffe/siteui/vlv3/c906271d-7184-4eec-83c9-b6d4c1a068ec/728874a6-eeda-400a-9bcf-a935a1408a4f/IN-en-20231127-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+            <img src={BG_URL}
       alt="background"></img> 
             </div>
             <div className=" absolute opacity-60 w-full h-full bg-black"></div>
@@ -124,7 +125,7 @@ const Login = () => {
                     {isSignInForm? "Sign In" : "Sign Up"}
                 </button>
                 <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
-                    {isSignInForm? "New to Netflix? Sign Up Now" : "Already registered? Sign In Now"}</p>
+                    {isSignInForm? "New to Movie GPT? Sign Up Now" : "Already registered? Sign In Now"}</p>
             </form>
          
         </div>

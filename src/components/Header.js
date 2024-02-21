@@ -4,11 +4,15 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
+import { toggleGptSearchView } from '../utils/gptSlice';
+import { SUPPORTED_LANGUAGES } from '../utils/constants';
+import { changeLanguage } from '../utils/configSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store)=> store.gpt.showGptSearch)
   const handleSignOut = () => {
     signOut(auth).then(() => {
       // Sign-out successful.
@@ -42,7 +46,17 @@ const Header = () => {
     //unsubscribe when component unmounts
     return () => unsubscribe();
     
-   },[])
+   },[]) 
+
+  const handleGptSearchClick=()=>{
+    //Toggle GPT Search
+    dispatch(toggleGptSearchView());
+
+  } 
+
+  const handleLanguageChange=(e)=>{
+    dispatch(changeLanguage(e.target.value));
+  }
   return (
     
     <div className='absolute w-screen px-4 py-1 z-10 flex justify-between'>
@@ -52,14 +66,23 @@ const Header = () => {
         src={require("./logo2.jpeg")} alt="logo" 
         /> */}
     
-      <h1 className=' font-sans tracking-tight text-6xl px-4 py-2 text-red-600 font-bold'>MovieGPT</h1>
       {/* <img className='w-52' 
       // src="src/components/movieGptLogo.png"
       //src="C:/Users/Hp/Desktop/movielogo1.png"
       src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
       alt = "logo"/>  */}
-      {user && (<div className='w-20'>
-        <img alt="usericon" src='https://images.ctfassets.net/4cd45et68cgf/1pFUjCo5EKjZp9SMoSIsmq/f66c53a4473233fa73f5820bc8a04d8a/NFLX_Profile_10Yrs.jpg?w=2000'></img>
+
+      <h1 className=' font-sans tracking-tight text-6xl px-4 py-2 text-red-600 font-bold'>MovieGPT</h1>
+      {user && (<div className='flex p-2'>
+        {showGptSearch && (<select className='py-2 px-4 mx-4 my-2 rounded bg-gray-900 text-white' onChange={handleLanguageChange}>
+          {SUPPORTED_LANGUAGES.map((lang)=>(
+            <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
+          ))}
+        </select>)}
+        <button onClick={handleGptSearchClick} className='py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded'>
+          {showGptSearch? "Homepage":"GPT Search"}
+          </button>
+        <img className='w-20' alt="usericon" src='https://images.ctfassets.net/4cd45et68cgf/1pFUjCo5EKjZp9SMoSIsmq/f66c53a4473233fa73f5820bc8a04d8a/NFLX_Profile_10Yrs.jpg?w=2000'></img>
         <button onClick={handleSignOut} className='font-bold text-white '>(Sign Out)</button>      
       </div>)}
     </div>

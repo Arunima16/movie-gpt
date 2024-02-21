@@ -24,6 +24,10 @@
 -fetch data for trailer video
 -update store with trailer video data
 -embedded youtube video & make it autoplay and mute
--
+-GPT search feature
+-use gpt API's for movie recommendation
+-GPT Search Page
+- Gpt search bar
+-multilingual feature 
 
 
