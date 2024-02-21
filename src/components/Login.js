@@ -93,7 +93,7 @@ const Login = () => {
             <img src={BG_URL}
       alt="background"></img> 
             </div>
-            <div className=" absolute opacity-60 w-full h-full bg-black"></div>
+            <div className=" fixed opacity-60 w-full h-full bg-black"></div>
             <Header/> 
             <form 
             onSubmit={(e)=>e.preventDefault()}

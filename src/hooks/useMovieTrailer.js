@@ -6,6 +6,8 @@ import { API_OPTIONS } from "../utils/constants";
 const useMovieTrailer = () => {
     
   const dispatch = useDispatch();
+
+  const trailerVideo = useSelector(store=> store.movies.trailerVideo)
   
   const movies = useSelector(store=> store.movies?.nowPlayingMovies);
 
@@ -24,6 +26,7 @@ const useMovieTrailer = () => {
     dispatch(addTrailerVideo(trailer));
   };
   useEffect(()=>{
+    if(!trailerVideo)
     getMovieVideos();
   },[]);
 

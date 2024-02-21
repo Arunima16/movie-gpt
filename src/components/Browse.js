@@ -17,7 +17,8 @@ const Browse = () => {
    useUpcomingMovies();
   return (
     <div>
-      <div className=" absolute opacity-30 w-screen aspect-video bg-black"></div>
+      {/* <div className=" absolute opacity-30 w-screen aspect-video bg-black"></div> */}
+      <div className=" fixed opacity-30 w-full h-full bg-black"></div>
       <Header/>
       {
         showGptSearch?(<GptSearch/>):
