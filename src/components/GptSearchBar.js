@@ -1,13 +1,19 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from 'react-redux';
 import openai from '../utils/openai';
 import { API_OPTIONS } from '../utils/constants';
-import { addGptMovieResult } from '../utils/gptSlice';
+import { addGptMovieResult, resetGptMovieResults } from '../utils/gptSlice';
 
 
 const GptSearchBar = () => {
     const dispatch = useDispatch();
+    useEffect(() => {
+      return () => {
+        // Dispatch the action to reset movie results when the component is unmounted
+        dispatch(resetGptMovieResults());
+      };
+    }, [dispatch]);
     const langKey = useSelector(store=> store.config.lang);
     const searchText = useRef(null);
 
@@ -68,9 +74,9 @@ const GptSearchBar = () => {
     }
 
   return (
-    <div className='pt-[10%] flex justify-center'>
+    <div className='pt-[40%] md:pt-[10%] flex justify-center'>
   
-         <form className='z-10 w-1/2 bg-black grid grid-cols-12'
+         <form className='z-10 w-full md:w-1/2 bg-black grid grid-cols-12'
          onSubmit={(e)=>e.preventDefault()}
         >
             <input 

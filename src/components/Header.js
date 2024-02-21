@@ -59,7 +59,7 @@ const Header = () => {
   }
   return (
     
-    <div className='absolute w-screen px-4 py-1 z-10 flex justify-between'>
+    <div className='absolute w-screen px-4 py-1 z-10 flex flex-col md:flex-row justify-between  '>
       
         {/* <img 
        className="w-44 h-35"
@@ -72,8 +72,8 @@ const Header = () => {
       src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
       alt = "logo"/>  */}
 
-      <h1 className=' font-sans tracking-tight text-6xl px-4 py-2 text-red-600 font-bold'>MovieGPT</h1>
-      {user && (<div className='flex p-2'>
+      <h1 className='mx-auto md:mx-0 font-sans tracking-tight text-6xl px-4 py-2 text-red-600 font-bold'>MovieGPT</h1>
+      {user && (<div className='flex p-2 justify-between'>
         {showGptSearch && (<select className='py-2 px-4 mx-4 my-2 rounded bg-gray-900 text-white' onChange={handleLanguageChange}>
           {SUPPORTED_LANGUAGES.map((lang)=>(
             <option key={lang.identifier} value={lang.identifier}>{lang.name}</option>
@@ -82,7 +82,7 @@ const Header = () => {
         <button onClick={handleGptSearchClick} className='py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded'>
           {showGptSearch? "Homepage":"GPT Search"}
           </button>
-        <img className='w-20' alt="usericon" src='https://images.ctfassets.net/4cd45et68cgf/1pFUjCo5EKjZp9SMoSIsmq/f66c53a4473233fa73f5820bc8a04d8a/NFLX_Profile_10Yrs.jpg?w=2000'></img>
+        <img className='hidden md:block w-20' alt="usericon" src='https://images.ctfassets.net/4cd45et68cgf/1pFUjCo5EKjZp9SMoSIsmq/f66c53a4473233fa73f5820bc8a04d8a/NFLX_Profile_10Yrs.jpg?w=2000'></img>
         <button onClick={handleSignOut} className='font-bold text-white '>(Sign Out)</button>      
       </div>)}
     </div>

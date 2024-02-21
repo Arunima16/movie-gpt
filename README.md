@@ -27,7 +27,16 @@
 -GPT search feature
 -use gpt API's for movie recommendation
 -GPT Search Page
-- Gpt search bar
+-Gpt search bar
 -multilingual feature 
+-get OpenAI API KEY
+-GPT Search API call
+-fetched gptmOVIESuggestions from TMDB
+-created gptSlice added data
+-Reused MovieList component to make suggestions container
+-memoization
+-adding .env file
+-adding .env file to gitignore
+-made website responsive
 
 
