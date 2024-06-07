@@ -19,9 +19,6 @@ const GptMovieSuggestions = () => {
     )}
   </div>
 </div>
-
-
-
   )
 }
 

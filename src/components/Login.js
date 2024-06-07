@@ -63,12 +63,12 @@ const Login = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setErrorMessage(errorCode+"-"+ errorMessage);
-                // ..
+                
             });
 
         }
         else{
-            //signin logic
+            //sign-in logic
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
                 // Signed in 

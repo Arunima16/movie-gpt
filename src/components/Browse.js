@@ -7,11 +7,19 @@ import usePopularMovies from '../hooks/usePopularMovies';
 import useTopRatedMovies from '../hooks/useTopRatedMovies';
 import useUpcomingMovies from '../hooks/useUpcomingMovies';
 import GptSearch from './GptSearch';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCastInfo, clearCastMovies, clearMovieInfo, clearMovieVideos } from '../utils/moviesSlice';
 
 const Browse = () => {
   const showGptSearch = useSelector(store=> store.gpt.showGptSearch);
-   useNowPlayingMovies();
+   
+  const dispatch = useDispatch();
+  dispatch(clearMovieInfo());
+  dispatch(clearCastInfo());
+  dispatch(clearMovieVideos());
+  dispatch(clearCastMovies());
+  
+  useNowPlayingMovies();
    usePopularMovies();
    useTopRatedMovies();
    useUpcomingMovies();
